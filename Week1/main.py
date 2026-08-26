@@ -1,0 +1,38 @@
+# Week 1 - Deep Learning
+# Dataset: https://www.kaggle.com/datasets/hojjatk/mnist-dataset
+
+import numpy as np
+import idx2numpy
+import tensorflow as tf
+from tensorflow import keras
+
+# Load the MNIST dataset
+X_train = idx2numpy.convert_from_file('Dataset/train-images.idx3-ubyte')
+Y_train = idx2numpy.convert_from_file('Dataset/train-labels.idx1-ubyte')
+X_test = idx2numpy.convert_from_file('Dataset/t10k-images.idx3-ubyte')
+Y_test = idx2numpy.convert_from_file('Dataset/t10k-labels.idx1-ubyte')
+
+# Preprocess the data
+NB_CLASSES = 10
+RESHAPED = 784
+
+# Reshape: flatten 28x28 grid into a 784-length vector
+X_train = X_train.reshape(60000, RESHAPED)
+X_test = X_test.reshape(10000, RESHAPED)
+
+# Cast to float32 so we can do decimal math during training
+X_train = X_train.astype('float32')
+X_test = X_test.astype('float32')
+
+# Normalize pixel values from [0,255] to [0,1]
+X_train /= 255
+X_test /= 255
+
+print(X_train.shape[0], 'train samples')
+print(X_test.shape[0], 'test samples')
+
+Y_train = tf.keras.utils.to_categorical(Y_train, NB_CLASSES)
+Y_test = tf.keras.utils.to_categorical(Y_test, NB_CLASSES)
+
+print('Y_train shape after one-hot:', Y_train.shape)  # should be (60000, 10)
+#test
