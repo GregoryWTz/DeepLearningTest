@@ -34,5 +34,17 @@ print(X_test.shape[0], 'test samples')
 Y_train = tf.keras.utils.to_categorical(Y_train, NB_CLASSES)
 Y_test = tf.keras.utils.to_categorical(Y_test, NB_CLASSES)
 
-print('Y_train shape after one-hot:', Y_train.shape)  # should be (60000, 10)
-#test
+# network and training parameters
+EPOCHS = 200
+BATCH_SIZE = 128
+VERBOSE = 1
+VALIDATION_SPLIT = 0.2
+
+model = tf.keras.models.Sequential()
+model.add(keras.layers.Dense(NB_CLASSES,
+    input_shape=(RESHAPED,),
+    kernel_initializer='zeros',
+    name='dense_layer',
+    activation='softmax'))
+
+model.summary()
