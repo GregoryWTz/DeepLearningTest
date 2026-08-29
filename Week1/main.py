@@ -35,7 +35,7 @@ Y_train = tf.keras.utils.to_categorical(Y_train, NB_CLASSES)
 Y_test = tf.keras.utils.to_categorical(Y_test, NB_CLASSES)
 
 # network and training parameters
-EPOCHS = 200
+EPOCHS = 50
 BATCH_SIZE = 128
 VERBOSE = 1
 VALIDATION_SPLIT = 0.2
@@ -48,3 +48,17 @@ model.add(keras.layers.Dense(NB_CLASSES,
     activation='softmax'))
 
 model.summary()
+
+model.compile(optimizer='sgd',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+
+model.fit(X_train, Y_train,
+          batch_size=BATCH_SIZE,
+          epochs=EPOCHS,
+          verbose=VERBOSE,
+          validation_split=VALIDATION_SPLIT)
+
+test_loss, test_acc = model.evaluate(X_test, Y_test)
+print('Test accuracy:', test_acc)
+print('Test loss:', test_loss)
