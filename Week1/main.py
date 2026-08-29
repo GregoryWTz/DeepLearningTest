@@ -41,10 +41,18 @@ VERBOSE = 1
 VALIDATION_SPLIT = 0.2
 
 model = tf.keras.models.Sequential()
-model.add(keras.layers.Dense(NB_CLASSES,
+
+model.add(keras.layers.Dense(128,
     input_shape=(RESHAPED,),
-    kernel_initializer='zeros',
-    name='dense_layer',
+    name='dense_layer1',
+    activation='relu'))
+
+# model.add(keras.layers.Dense(128,
+#     name='dense_layer2',
+#     activation='relu'))
+
+model.add(keras.layers.Dense(NB_CLASSES,
+    name='dense_layer3',
     activation='softmax'))
 
 model.summary()
