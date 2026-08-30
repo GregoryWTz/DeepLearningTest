@@ -47,9 +47,9 @@ model.add(keras.layers.Dense(128,
     name='dense_layer1',
     activation='relu'))
 
-# model.add(keras.layers.Dense(128,
-#     name='dense_layer2',
-#     activation='relu'))
+model.add(keras.layers.Dense(128,
+    name='dense_layer2',
+    activation='relu'))
 
 model.add(keras.layers.Dense(NB_CLASSES,
     name='dense_layer3',

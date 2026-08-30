@@ -1,0 +1,17 @@
+I set an environment to use TensorFlow since it can only be used from py ver 3.9 - 3.12. I use 3.12.10
+py -3.12 -m venv tf_env
+
+And then to activate the environment
+tf_env\Scripts\activate
+
+Install TensorFlow
+pip install tensorflow
+
+Run the file
+py main.py
+
+deactivate the env:
+deactivate
+
+If numpy is unknown:  No module named 'numpy', install it
+pip install numpy
