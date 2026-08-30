@@ -39,17 +39,21 @@ EPOCHS = 50
 BATCH_SIZE = 128
 VERBOSE = 1
 VALIDATION_SPLIT = 0.2
+N_HIDDEN = 128
+DROPOUT = 0.3
 
 model = tf.keras.models.Sequential()
 
-model.add(keras.layers.Dense(128,
+model.add(keras.layers.Dense(N_HIDDEN,
     input_shape=(RESHAPED,),
     name='dense_layer1',
     activation='relu'))
+model.add(keras.layers.Dropout(DROPOUT))
 
-model.add(keras.layers.Dense(128,
+model.add(keras.layers.Dense(N_HIDDEN,
     name='dense_layer2',
     activation='relu'))
+model.add(keras.layers.Dropout(DROPOUT))
 
 model.add(keras.layers.Dense(NB_CLASSES,
     name='dense_layer3',
