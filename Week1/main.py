@@ -57,11 +57,20 @@ model.add(keras.layers.Dropout(DROPOUT))
 
 model.add(keras.layers.Dense(NB_CLASSES,
     name='dense_layer3',
+    activation='relu'))
+
+for i in range(16):
+    model.add(keras.layers.Dense(N_HIDDEN,
+        name=f'dense_layer{i+4}',
+        activation='relu'))
+
+model.add(keras.layers.Dense(NB_CLASSES,
+    name='dense_layer180',
     activation='softmax'))
 
 model.summary()
 
-model.compile(optimizer='sgd',
+model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
