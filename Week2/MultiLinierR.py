@@ -51,10 +51,31 @@ model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_absolu
 # Train the model for 100 epochs with 20% of the training data used for validation
 history = model.fit(x=train_features, y=train_labels, epochs=100, validation_split=0.2, verbose=1)
 
+# Plot 1: Training and Validation Loss
 plt.plot(history.history['loss'], label='loss', color='black', linewidth=1.5)
 plt.plot(history.history['val_loss'], label='val_loss', color='red', linewidth=1.5)
 plt.xlabel('Epoch')
 plt.ylabel('Error [MPG]')
 plt.legend()
 plt.grid(True, which='both', linestyle='--', color='gray', alpha=0.7)
+plt.show()
+
+# Plot 2: True Values vs Predicted Values
+y_pred = model.predict(test_features).flatten()
+
+a = plt.axes(aspect='equal')
+plt.scatter(test_labels, y_pred)
+plt.xlabel('True Values [MPG]')
+plt.ylabel('Predictions [MPG]')
+lims = [0, 50]
+plt.xlim(lims)
+plt.ylim(lims)
+plt.plot(lims, lims, color='red', linestyle='--')
+plt.show()
+
+# Plot 3: Error Distribution
+error = y_pred - test_labels
+plt.hist(error, bins=30)
+plt.xlabel('Prediction Error [MPG]')
+plt.ylabel('Count')
 plt.show()
