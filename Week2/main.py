@@ -14,3 +14,10 @@ plt.xlabel('Area')
 plt.ylabel('Price')
 plt.title('Example Data')
 plt.show()
+
+#Calculating the two regression coefficients using the equations
+W = sum(price*(area - np.mean(area))) / sum((area - np.mean(area))**2)
+b = np.mean(price) - W * np.mean(area)
+print("======================================")
+print("The calculated regression coefficients are: ", W, b)
+print("======================================\n")
